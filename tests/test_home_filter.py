@@ -44,8 +44,6 @@ class Test_home_filter(unittest.TestCase):
 
                 self.driver.execute_script("window.location = 'https://deltadev.ir/tehran';")
                 sleep(5)
-            # except:
-            #     print("در استفاده از فیلتر مشکل به وجود اومده")
 
     def verify_prop_details(self, details):
         min_price = details[2]
@@ -82,7 +80,7 @@ class Test_home_filter(unittest.TestCase):
 
 
     def verify_buy_page_filter(self , prop):
-        # title_page=self.buy.find_header().text()
+
         title_page = self.driver.find_element(By.XPATH , "//h1[@class = 'text-sm font-bold']").text
         type_transaction = self.driver.find_element(By.XPATH , "//span[@class = 'ant-select-selection-item' and @title='خرید']").text
         type_prop = self.driver.find_element(By.XPATH,
@@ -115,9 +113,6 @@ class Test_home_filter(unittest.TestCase):
 
         list_input = []
 
-
-        # try:
-        # assert expected_values[1] in first_input , (f"input value is not {first_input}")
         if first_input =="متراژ از":
             list_input.append(0)
             print("فیلتر بخش((متراژ از )) خراب است")
@@ -126,9 +121,6 @@ class Test_home_filter(unittest.TestCase):
             num_1 = int(first_meter[0])
             list_input.append(num_1)
 
-
-
-        # assert expected_values[2] in second_input, (f"input value is not {second_input}")
         if second_input =="متراژ تا":
             list_input.append(0)
             print("فیلتر بخش((متراژ تا )) خراب است")
@@ -138,8 +130,6 @@ class Test_home_filter(unittest.TestCase):
             list_input.append(num_2)
 
 
-
-        # assert expected_values[3] in third_input, (f"input value is not {third_input}")
         if third_input =="حداقل قیمت":
             list_input.append(0)
             print("فیلتر بخش((حداقل قیمت )) خراب است")
@@ -148,9 +138,6 @@ class Test_home_filter(unittest.TestCase):
             num_3 = int(first_price[0])*1000000000
             list_input.append(num_3)
 
-
-
-        # assert expected_values[4] in fourth_input, (f"input value is not {fourth_input}")
         if fourth_input =="حداکثر قیمت":
             list_input.append(0)
             print("فیلتر بخش((حداکثر قیمت )) خراب است")
@@ -159,58 +146,7 @@ class Test_home_filter(unittest.TestCase):
             num_4 = int(second_price[0]) * 1000000000
             list_input.append(num_4)
 
-
-
         return list_input
-
-        # except AssertionError as e:
-        #     print(f"Assertion Error: {e}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # values = self.driver.find_elements(By.XPATH, "//span[@class='ant-select-selection-item']")
-        # expected_values = {
-        #     1: "50",
-        #     2: "100",
-        #     3: "1",
-        #     4: "15"
-        # }
-        # list_input = []
-        #
-        # for value in range(1, len(values) + 1):
-        #     input_text = self.driver.find_element(
-        #         By.XPATH, f"(//span[@class='ant-select-selection-item'])[{value}]"
-        #     ).text
-        #     null_input = self.driver.find_element(By.XPATH , "//span[@class='ant-select-selection-placeholder']")
-        #     print(input_text)
-        #     if not input_text:
-        #         list_input.append(0)
-        #     list_input.append(input_text)
-        #
-        #     print(f"مقدار انتظاری برای property {value}: {expected_values[value]}")
-        #     print(f"مقدار واقعی در صفحه: {input_text}")
-        #     try:
-        #         assert expected_values[value] in input_text ,(
-        #     f"عدم تطابق در property {value}: "
-        #     f"انتظار '{expected_values[value]}'، اما دریافت '{input_text}'"
-        # )
-        #         print(f"✓ Property {value} صحیح است\n")
-        #     except AssertionError as e:
-        #         print(f"Assertion Error: {e}")
-        #
-        # return list_input
 
     def tearDown(self):
         self.driver.quit()
